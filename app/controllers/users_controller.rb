@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       redirect_to user_path, notice: t('flush_messege.models.user.update')
+      flash[:notice] = "アカウントを更新しました"
     else
       render :edit
     end

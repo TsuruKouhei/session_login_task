@@ -10,9 +10,10 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, id: "#{key}") %>
-    <% end %>
+   <% flash.each do |message_type, message| %>
+     <div class="flash-message <%= message_type %>"><%= message %></div>
+   <% end %>
+
     <% if logged_in? %>
       <%= link_to "タスク一覧", tasks_path, id:"tasks-index" %>
       <%= link_to "タスクを登録する", new_task_path, id:"new-task" %>

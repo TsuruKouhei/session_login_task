@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       flash[:notice] = "タスクを更新しました"
-      redirect_to tasks_path, notice: t('.updated')
+      redirect_to tasks_path
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     flash[:notice] = "タスクを削除しました"
-    redirect_to tasks_path, notice: t('.destroyed')
+    redirect_to tasks_path
   end
 
   private
