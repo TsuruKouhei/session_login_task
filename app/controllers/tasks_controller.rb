@@ -13,7 +13,8 @@ class TasksController < ApplicationController
     @task = current_user.tasks.build(task_params)
 
     if @task.save
-      redirect_to tasks_path
+      flash[:notice] = "タスクを登録しました"
+      redirect_to tasks_path 
     else
       render :new
     end
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
+      flash[:notice] = "タスクを更新しました"
       redirect_to tasks_path, notice: t('.updated')
     else
       render :edit
@@ -36,6 +38,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
+    flash[:notice] = "タスクを削除しました"
     redirect_to tasks_path, notice: t('.destroyed')
   end
 
@@ -49,3 +52,4 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :content, :user_id)
     end
 end
+
